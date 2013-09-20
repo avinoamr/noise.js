@@ -5,14 +5,41 @@
             body {
                 margin: 0;
             }
+            canvas {
+                margin: 30px auto;
+                display: block;
+            }
         </style>
     </head>
     <body>
         <script src="../noise.js"></script>
         <script>
 
-            var n = new Noise( 16, 16, 16 );
-            n.sample( 0, 0, 0 );
+            var n = new Noise( 256, 256, 2 );
+
+            var canvas = document.createElement( "canvas" );
+            canvas.width = 500;
+            canvas.height = 500;
+            document.body.appendChild( canvas );
+
+            var ctx = canvas.getContext( "2d" ),
+                data = ctx.createImageData( canvas.width, canvas.height );
+
+            for ( var x = 0 ; x < canvas.width ; x += 1 ) {
+                for ( var y = 0 ; y < canvas.height ; y += 1 ) {
+                    var i = x * 4 + ( canvas.width * 4 * y ),
+                        px = x / 500 * ( n.width - 1 ),
+                        py = y / 500 * ( n.height - 1 ),
+                        c = 255 * n.sample( px, py, 0 );
+                    
+                    data.data[ i + 0 ] = c;
+                    data.data[ i + 1 ] = c;
+                    data.data[ i + 2 ] = c;
+                    data.data[ i + 3 ] = 255;
+                }
+            }
+            ctx.putImageData( data, 0, 0 );
+
 
         </script>
     </body>

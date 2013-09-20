@@ -36,7 +36,6 @@
             zd = z - z0;
 
         // linearily interpolate between the points: p0 + d
-        console.log( x0 );
         var data = this.data,
 
             // x0, y0
