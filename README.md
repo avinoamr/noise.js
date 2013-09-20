@@ -29,3 +29,6 @@ n.sample(  0,  0,  0  ); // 0.9284072476439178
 n.sample(  0,  0,  1  ); // 0.3728323532268405
 n.sample(  0,  0, .5  ); // 0.6506198004353791
 ```
+
+See the example that demonstrates how to use this library in practice to
+generate a 500x500 image of random noise.
