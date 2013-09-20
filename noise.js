@@ -20,9 +20,9 @@
         z %= this.depth - 1;
 
         // flip negatives
-        ( x < 0 ) && ( x = this.width + x );
-        ( y < 0 ) && ( y = this.width + y );
-        ( z < 0 ) && ( z = this.width + z );
+        ( x < 0 ) && ( x = this.width + x - 1 );
+        ( y < 0 ) && ( y = this.width + y - 1 );
+        ( z < 0 ) && ( z = this.width + z - 1 );
 
         // sampling points
         var x0 = Math.floor( x ),
