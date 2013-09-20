@@ -14,25 +14,25 @@
     //
     Noise.prototype.sample = function( x, y, z ) {
 
-        // repeat
-        x %= this.width - 1;
-        y %= this.height - 1;
-        z %= this.depth - 1;
+        // repeat 
+        x %= this.width;
+        y %= this.height;
+        z %= this.depth;
 
         // flip negatives
-        ( x < 0 ) && ( x = this.width + x - 1 );
-        ( y < 0 ) && ( y = this.width + y - 1 );
-        ( z < 0 ) && ( z = this.width + z - 1 );
+        ( x < 0 ) && ( x = this.width  + x );
+        ( y < 0 ) && ( y = this.height + y );
+        ( z < 0 ) && ( z = this.depth  + z );
 
         // sampling points
         var x0 = Math.floor( x ),
-            x1 = Math.ceil( x ),
+            x1 = Math.ceil( x ) % this.width,
             xd = x - x0,
             y0 = Math.floor( y ),
-            y1 = Math.ceil( y ),
+            y1 = Math.ceil( y ) % this.height,
             yd = y - y0,
             z0 = Math.floor( z ),
-            z1 = Math.ceil( z ),
+            z1 = Math.ceil( z ) % this.depth,
             zd = z - z0;
 
         // linearily interpolate between the points: p0 + d
